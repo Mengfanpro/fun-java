@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="net.mengfan.fun.dao.MenuMapper">
+
+    <insert id="insertMenu" parameterType="net.mengfan.fun.domain.Menu">
+        insert into menu(menu_id, parent_menu, menu_type, menu_name, url, path, icon, status, sort)
+        values (#{menuId}, #{parentMenu}, #{menuType}, #{menuName}, #{url}, #{path}, #{icon}, #{status}, #{sort})
+    </insert>
+
+    <select id="selectMenuByName" resultType="Integer">
+        select count(1) from menu where menu_name=#{menuName}
+    </select>
+</mapper>
