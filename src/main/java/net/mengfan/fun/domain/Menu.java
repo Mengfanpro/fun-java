@@ -1,12 +1,16 @@
 package net.mengfan.fun.domain;
 
+import lombok.Data;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 /**
  *
  */
 @Repository
+@Data
 public class Menu {
 
     /**
@@ -17,7 +21,7 @@ public class Menu {
     /**
      * 父级菜单
      */
-    private String parentMenu;
+    private Integer parentMenu;
 
     /**
      * 菜单类型
@@ -54,90 +58,8 @@ public class Menu {
      */
     private Integer sort;
 
-    public Integer getMenuId() {
-        return menuId;
-    }
-
-    public void setMenuId(Integer menuId) {
-        this.menuId = menuId;
-    }
-
-    public String getParentMenu() {
-        return parentMenu;
-    }
-
-    public void setParentMenu(String parentMenu) {
-        this.parentMenu = parentMenu;
-    }
-
-    public Integer getMenuType() {
-        return menuType;
-    }
-
-    public void setMenuType(Integer menuType) {
-        this.menuType = menuType;
-    }
-
-    public String getMenuName() {
-        return menuName;
-    }
-
-    public void setMenuName(String menuName) {
-        this.menuName = menuName;
-    }
-
-    public String getUrl() {
-        return url;
-    }
-
-    public void setUrl(String url) {
-        this.url = url;
-    }
-
-    public String getPath() {
-        return path;
-    }
-
-    public void setPath(String path) {
-        this.path = path;
-    }
-
-    public String getIcon() {
-        return icon;
-    }
-
-    public void setIcon(String icon) {
-        this.icon = icon;
-    }
-
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Integer getSort() {
-        return sort;
-    }
-
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
-
-    @Override
-    public String toString() {
-        return "Menu{" +
-                "menuId=" + menuId +
-                ", parentMenu='" + parentMenu + '\'' +
-                ", menuType=" + menuType +
-                ", menuName='" + menuName + '\'' +
-                ", url='" + url + '\'' +
-                ", path='" + path + '\'' +
-                ", icon='" + icon + '\'' +
-                ", status=" + status +
-                ", sort=" + sort +
-                '}';
-    }
+    /**
+     * 菜单子集
+     */
+    private List<Menu> children;
 }

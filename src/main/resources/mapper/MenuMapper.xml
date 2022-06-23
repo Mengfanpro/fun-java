@@ -4,12 +4,43 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="net.mengfan.fun.dao.MenuMapper">
 
+    <resultMap type="Menu" id="MenuResult">
+        <id property="menuId" column="menu_id"/>
+        <result property="parentMenu" column="parent_menu"/>
+        <result property="menuType" column="menu_type"/>
+        <result property="menuName" column="menu_name"/>
+        <result property="url" column="url"/>
+        <result property="path" column="path"/>
+        <result property="icon" column="icon"/>
+        <result property="status" column="status"/>
+    </resultMap>
+
+    <resultMap type="MenuOption" id="MenuOptionResult">
+        <id property="menuId" column="menu_id"/>
+        <result property="parentMenu" column="parent_menu"/>
+        <result property="menuName" column="menu_name"/>
+    </resultMap>
+
     <insert id="insertMenu" parameterType="net.mengfan.fun.domain.Menu">
         insert into menu(menu_id, parent_menu, menu_type, menu_name, url, path, icon, status, sort)
         values (#{menuId}, #{parentMenu}, #{menuType}, #{menuName}, #{url}, #{path}, #{icon}, #{status}, #{sort})
     </insert>
 
     <select id="selectMenuByName" resultType="Integer">
-        select count(1) from menu where menu_name=#{menuName}
+        select count(1)
+        from menu
+        where menu_name = #{menuName}
+    </select>
+
+    <select id="selectMenuListTree" resultMap="MenuOptionResult">
+        select menu_id as value, parent_menu, menu_name as label
+        from menu
+        ORDER BY sort
+    </select>
+
+    <select id="selectMenuAll" resultMap="MenuResult">
+        select *
+        from menu
+        ORDER BY sort
     </select>
 </mapper>
