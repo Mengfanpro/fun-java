@@ -61,5 +61,5 @@ public class Menu {
     /**
      * 菜单子集
      */
-    private List<Menu> children;
+    private List<Menu> childrenList;
 }

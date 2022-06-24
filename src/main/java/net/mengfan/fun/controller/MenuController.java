@@ -21,13 +21,6 @@ public class MenuController {
 
     private static final Logger logger = LoggerFactory.getLogger(MenuController.class);
 
-    private Menu menu;
-
-    @Autowired
-    public void Menu(Menu menu) {
-        this.menu = menu;
-    }
-
     private MenuService menuService;
 
     @Autowired
@@ -40,9 +33,6 @@ public class MenuController {
         if (menuService.selectMenuByName(menu.getMenuName()) != 0) {
             return Result.failure(ResultCode.MENU_ALREADY_EXISTS);
         }
-        if (menu.getParentMenu().equals("根菜单")) {
-            menu.setParentMenu(0);
-        }
         menuService.insertMenu(menu);
         return Result.success();
     }
@@ -53,9 +43,14 @@ public class MenuController {
         return Result.success(menuOptionList);
     }
 
-    @RequestMapping("/list/tree")
+    @RequestMapping("list/tree")
     public Result getMenuListTree() {
         List<Menu> menuList = menuService.getMenuListTree();
         return Result.success(menuList);
+    }
+
+    @RequestMapping("delete")
+    public Result deleteMenu(String menuId) {
+        return Result.success("删除菜单:" + menuId);
     }
 }

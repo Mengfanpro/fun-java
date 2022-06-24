@@ -1,7 +1,5 @@
 package net.mengfan.fun.utils;
 
-import lombok.Data;
-import net.mengfan.fun.domain.Menu;
 import net.mengfan.fun.domain.MenuOption;
 
 import java.util.ArrayList;
@@ -12,7 +10,7 @@ import java.util.List;
  * @version 1.0
  * @date 2022/6/23 10:26
  */
-public class TreeNode {
+public class MenuOptionTree {
 
     // 建立父节点树形结构
     public List<MenuOption> buildTree(List<MenuOption> depts){
@@ -23,6 +21,7 @@ public class TreeNode {
         }
         return Menus;
     }
+
     // 查询所有的父节点，getParentMenu()=0
     private List<MenuOption> getNodeTree(List<MenuOption> depts){
         ArrayList<MenuOption> Menus = new ArrayList<>();
