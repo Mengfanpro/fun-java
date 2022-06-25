@@ -43,4 +43,14 @@
         from menu
         ORDER BY sort
     </select>
+
+    <select id="selectMenuSubset" resultType="Integer">
+        select count(1)
+        from menu
+        where parent_menu = #{parentMenu}
+    </select>
+
+    <delete id="deleteMenu" parameterType="Integer">
+        delete from menu where menu_id = #{menuId}
+    </delete>
 </mapper>

@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -50,7 +51,14 @@ public class MenuController {
     }
 
     @RequestMapping("delete")
-    public Result deleteMenu(String menuId) {
-        return Result.success("删除菜单:" + menuId);
+    public Result deleteMenu(@RequestBody Menu Menu) {
+        Integer isMenuSubset = menuService.selectMenuSubset(Menu.getMenuId());
+        if (isMenuSubset == 0) {
+            menuService.deleteMenu(Menu.getMenuId());
+            return Result.success();
+        } else {
+            return Result.failure("该菜单下有" + isMenuSubset + "个子菜单，删除失败");
+        }
+
     }
 }

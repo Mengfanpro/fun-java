@@ -9,11 +9,15 @@ import java.util.List;
 public interface MenuService {
 
 
-    Integer insertMenu(Menu menu);
+    void insertMenu(Menu menu);
 
     Integer selectMenuByName(String menuName);
 
     List<MenuOption> getMenuOptionListTree();
 
     List<Menu> getMenuListTree();
+
+    Integer selectMenuSubset(Integer menuId);
+
+    void deleteMenu(Integer menuId);
 }

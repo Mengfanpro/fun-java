@@ -40,4 +40,17 @@ public interface MenuMapper {
      * @return
      */
     List<Menu> selectMenuAll();
+
+    /**
+     * 根据菜单id查询是否有子菜单
+     * @param parentMenu
+     * @return
+     */
+    Integer selectMenuSubset(Integer parentMenu);
+
+    /**
+     * 删除菜单
+     * @param menuId
+     */
+    void deleteMenu(Integer menuId);
 }

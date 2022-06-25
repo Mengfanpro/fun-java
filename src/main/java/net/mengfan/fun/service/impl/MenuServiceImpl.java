@@ -27,8 +27,8 @@ public class MenuServiceImpl implements MenuService {
     }
 
     @Override
-    public Integer insertMenu(Menu menu) {
-        return menuMapper.insertMenu(menu);
+    public void insertMenu(Menu menu) {
+        menuMapper.insertMenu(menu);
     }
 
     @Override
@@ -53,8 +53,17 @@ public class MenuServiceImpl implements MenuService {
     public List<Menu> getMenuListTree() {
         List<Menu> menuList = menuMapper.selectMenuAll();
         MenuTree menuTree = new MenuTree();
-        List<Menu> menuListTree = menuTree.buildTree(menuList);
-        return menuListTree;
+        return menuTree.buildTree(menuList);
+    }
+
+    @Override
+    public Integer selectMenuSubset(Integer MenuId) {
+        return menuMapper.selectMenuSubset(MenuId);
+    }
+
+    @Override
+    public void deleteMenu(Integer menuId) {
+        menuMapper.deleteMenu(menuId);
     }
 
 
